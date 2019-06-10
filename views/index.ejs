@@ -1,0 +1,34 @@
+<% include ./partials/header %>
+<div class="container text-center">
+  <h1 class="text-center display-4">Blogs</h1>
+  <hr style="margin-left:25%;margin-right:25%;">
+</div>
+
+<% blogs.forEach(function(blog){%>
+  <div class="conatiner ">
+    <div class="row border border-warning rounded bg-light">
+      <div class="col-auto">
+        <figure class="figure">
+          <img src="<%=blog.image%>" alt="<%=blog.title%>" >
+        </figure>
+      </div>
+      <div class="col-6">
+        <div >
+          <h2 class="text-truncate" style="margin-bottom:1px;"><%=blog.title%></h2>
+          <p style="margin-bottom:0.5em;"><%= blog.created.toDateString() %></p>
+          <p class="text-truncate"><%=blog.body%></p>
+        </div>
+        <div style="display: flex;">
+          <a href="/blogs/<%=blog._id%>" class="btn btn-outline-primary" style="margin-right:10px;">Show more <i class="fas fa-chevron-right"></i></a>
+          <a href="/blogs/<%=blog._id%>/edit" class="btn btn-outline-success"><i class="fas fa-edit"></i> Edit</a>
+          <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="margin-left:10px;" >
+            <button class="btn btn-outline-danger"><i class="fas fa-trash"></i> Delete</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<%})%>
+
+<% include ./partials/footer %>
